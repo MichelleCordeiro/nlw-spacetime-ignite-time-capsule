@@ -1,0 +1,14 @@
+SAÍ DA PASTA SERVER
+> npx create-next-app@latest web --use-npm
+
+yes p todas as perguntas
+
+na pasta web   > npm run dev
+
+Add no settings.json p criar autocompletar das tags
+  "emmet.syntaxProfiles": {
+    "javascript": "jsx"
+  },
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact"
+  },
