@@ -1,9 +1,10 @@
-SAÍ DA PASTA SERVER
+SAI DA PASTA SERVER
 > npx create-next-app@latest web --use-npm
+    'yes' p todas as perguntas
 
-yes p todas as perguntas
+Na pasta web
+> npm run dev
 
-na pasta web   > npm run dev
 
 Add no settings.json p criar autocompletar das tags
   "emmet.syntaxProfiles": {
@@ -12,3 +13,46 @@ Add no settings.json p criar autocompletar das tags
   "emmet.includeLanguages": {
     "javascript": "javascriptreact"
   },
+
+
+ROTEAMENTO
+O Next trás as rotas prontas, basta criar arquivos page.tsx dentro da pasta app
+  Ex: app > page.tsx
+      app > ignite > page.tsx  (localhost:3000/ignite), mas precisa do "export default function Nome() {...}"
+
+
+ESLINT
+Além do ESLint q vem c o Next instala o ESLint c a configuração da rocketseat
+> npm i @rocketseat/eslint-config -D
+
+Add no .eslintrc.json a linha de código da rocketseat
+{
+  "extends": [
+    "next/core-web-vitals", 
+    "@rocketseat/eslint-config/node"
+  ]
+}
+
+Após isso vão aparecer erros em alguns arquivos q devem ser corrigidos
+Ex: No layout.tsx
+  children: React.ReactNode
+    ⬇ 
+  children: ReactNode
+  apaga 'React', deixa o mouse sobre 'ReactNode, clica no Quick fix e depois 'Add import from react'
+
+
+PRETTIER
+> npm i prettier-plugin-tailwindcss -D
+
+Cria o arquivo prettier.config.js c o conteúdo abaixo
+  module.exports = {
+    plugins: [require('prettier-plugin-tailwindcss')],
+  }
+
+Reinicia o VS Code p aplicar as configurações do prettier no tailwindcss
+CTRL + SHIFT + p   >   reload windows
+  
+  reordenou o tailwind do page.tsx p padronizar
+    <div className="text-2xl font-bold uppercase w-20 h-20 bg-red-300 rounded m-10">Oi</div>
+      ⬇ 
+    <div className="m-10 h-20 w-20 rounded bg-red-300 text-2xl font-bold uppercase">

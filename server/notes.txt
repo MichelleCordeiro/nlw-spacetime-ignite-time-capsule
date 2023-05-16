@@ -1,0 +1,76 @@
+> npm i -y
+
+> npm i typescript -D
+
+> npx tsc --init
+
+> npm i tsx -D
+
+package.json
+  "scripts": {
+    "dev": "tsx watch src/server.ts"
+  },
+
+> npm i fastify
+
+> npm install eslint -D
+> npm i @rocketseat/eslint-config -D
+
+NÃO EXECUTAR npx eslint --init
+ele fará muitas perguntas p configurar seu jeito de programar (uso de vírgula ou não, aspas simples ou dupla ...)
+O comando npm i @rocketseat... é a configuração q Diego criou
+
+Cria o .eslintrc.json c o seguinte conteúdo
+{
+  "extends": [
+    "@rocketseat/eslint-config/node"
+  ]
+}
+
+Add no settings.json p corrigir automaticamente
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true,
+    "source.addMissingImports": true
+  },
+
+No script do package.json add o código abaixo p corrigir automaticamente todos os arquivos .ts do projeto ao executar o comando de correção
+  "scripts": {
+    ...
+    "lint": "eslint src --ext .ts --fix"
+  },
+
+Comando p corrigir todos os arquivos .ts
+> npm run lint
+
+Prisma: ferramenta p trabalhar c banco de dados
+> npm i prisma -D
+
+Help do prisma
+> npx prisma -h
+
+Informa ao prisma q iremos trabalhar c o banco SQLite e não c o banco padrão dele, o postegress
+Ter a extensão do prisma no VS Code instalada
+> npx prisma init --datasource-provider SQLite
+
+Add no settings.json p alinhar itens automaticamente ao salvar
+  "[prisma]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "Prisma.prisma"
+  },
+
+Após cria a tabela/model no schema.prisma
+> npx prisma migrate dev
+
+> npx prisma studio
+
+> npm i @prisma/client
+
+https://nextjs.org/     > Learn Next.js  > CREATE YOUR FIRST APP  >   Setup
+https://nextjs.org/learn/basics/create-nextjs-app/setup
+SAÍ DA PASTA SERVER
+> npx create-next-app@latest web --use-npm
+
+yes p todas as perguntas
+
+na pasta web   > npm run dev
+
