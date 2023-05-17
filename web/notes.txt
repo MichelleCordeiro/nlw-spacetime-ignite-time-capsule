@@ -56,3 +56,36 @@ CTRL + SHIFT + p   >   reload windows
     <div className="text-2xl font-bold uppercase w-20 h-20 bg-red-300 rounded m-10">Oi</div>
       ⬇ 
     <div className="m-10 h-20 w-20 rounded bg-red-300 text-2xl font-bold uppercase">
+
+
+FONTS
+  import { ... } from 'next/font/google'
+  Add fonts google sem ser pelo método tradicional/links tem a vantagem de evitar o "efeito layout shift" (qdo a aplicação carrega c uma fonte padrão e só depois troca pela fonte escolhida)
+
+CORES
+  No Figma foi usado o plugin Foundation: Color Generation
+
+  P selecionar os HEXs das cores:
+    - clica num HEX apertando CTRL
+    - e sem soltar o CTRL aperta tbm no SHIFT
+    - e sai clicando só nos HEXs
+  
+  Após copiar as cores no tailwind.config.js > extends, seleciona todas as cores e aperta CTRL + ALT + i pro cursor ir pro final e colocar a vírgula
+
+FAVICON
+Basta colocar a imagem c o nome icon.png ou favico.ico dentro da pasta app
+
+REACT TAILWIND
+CENTRALIZAR O POSITION
+  className="absolute top-1/2 -translate-y-1/2"
+
+TRACINHOS/ MARCADORES
+Não usou a propriedade repeating-linear-gradient() pq nem todos os browsers suportam ela
+
+PACOTE DE ICONES
+> npm i lucide-react
+
+ATENÇÃO: o pacote PHOSPHOR ainda não foi atualiza p funcionar c a nova versão no Next
+
+
+
