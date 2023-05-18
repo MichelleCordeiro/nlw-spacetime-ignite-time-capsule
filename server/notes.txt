@@ -129,6 +129,40 @@ No server.ts
     // origin: ['http://localhost:3000', 'http://rocketseat.com.br/'],
   })
 
+HTTPie
+Aplicação q permite passar a rota no terminal
+
+Instalei pelo chocolatey e pelo windows, e dava erro ao executar
+  Meu python já estava atualizado 3.11.3
+  Atualizei o pip 22.3.1 -> 23.1.2
+
+  How to install HTTPie on windows?
+  https://www.logicbig.com/how-to/tools/install-httpie.html
+
+  Revisei as configurações no Windows:
+    Botão direito no Meu Computador > Propriedades > Conf. avançadas do sistema > 
+    > Variáveis de Ambiente > path (editar) > C:\Python311\Scripts
+          > Michelle > path (editar)  > C:\Python311\Scripts
+
+  Instalei o HTTPie pelo pip
+  > pip install -U httpie
+
+  Continuava dando erro
+  > http GET http://www.example.com
+
+Desinstalei o HTTPie, tanto a versão windows(pelo painel de controle) qto pelo pip
+> pip uninstall httpie
+
+Executei
+> pip install awscli --force-reinstall --upgrade"
+
+Re-instlaei o HTTPie
+> pip install -U httpie
+
+Deu certo
+> http GET http://www.example.com
+
+
 AULA 03
 
 Ver anotações da aula 03 no web
@@ -136,5 +170,59 @@ Após registrar nova aplicação no GITHUB e gerar a chave secreta do Client, sa
   # Github
   GITHUB_CLIENT_ID=5d9b9843964b7a74ffa8
   GITHUB_CLIENT_SECRET=ea4bcc96893ae322b767dc2d61bc0906668eab4d
+
+DOTENV
+Instala ele p o backend não converte automaticamente as variáveis de ambiente. O prisma sim, mas o back não
+> npm i dotenv -D
+
+No server.ts
+  import 'dotenv/config'
+  app.register(authRoutes)
+
+Cria a rota routes  >  auth.ts
+
+AXIOS
+> npm i axios
+
+Erro ESLint camel case
+No .eslintrc.json
+  "rules": {
+    "camelcase": "off"
+  }
+
+AUTH.ts - Erro no 'process' - cannot find name 'process'. do you need to install type definitions...
+  client_id: process.env.GITHUB_CLIENT_ID,
+  client_secret: process.env.GITHUB_CLIENT_SECRET,
+
+  Resolvi >  npm i --save-dev @types/node
+
+JWT - JSON Web Token
+Como o token expira rápido nosso backend cria outro p trabalhar c ele por qto tempo a gente definir q o usuário ficará logado
+> npm i @fastify/jwt
+
+https://jwt.io/
+Pega o token mostrado no terminal após
+> http POST localhost:3333/register code=codigoDaUrlAposClicarEmCrieSuaConta --json
+
+Cola no Encoded do site e em Payload ver as infos
+
+Esse token será enviado pro frontend, o frontend vai salvar esse token e vai utilizar p fazer as requisições futuras no meu backend. C esse token o backend vai poder saber exatamente qual q é o usuário q tá fazendo essas requisições
+
+Cria arquivo auth.d.ts
+Pega na documentação do fastify jwd (https://github.com/fastify/fastify-jwt)
+  import '@fastify/jwt'
+
+  declare module '@fastify/jwt' {
+    export interface FastifyJWT {
+      user: {
+        sub: string
+        name: string
+        avatarUrl: string
+      }
+    }
+  }
+
+
+
 
 
