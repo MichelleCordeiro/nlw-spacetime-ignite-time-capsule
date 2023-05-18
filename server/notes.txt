@@ -129,3 +129,12 @@ No server.ts
     // origin: ['http://localhost:3000', 'http://rocketseat.com.br/'],
   })
 
+AULA 03
+
+Ver anotações da aula 03 no web
+Após registrar nova aplicação no GITHUB e gerar a chave secreta do Client, salva ela e o Client ID no arquivo .env
+  # Github
+  GITHUB_CLIENT_ID=5d9b9843964b7a74ffa8
+  GITHUB_CLIENT_SECRET=ea4bcc96893ae322b767dc2d61bc0906668eab4d
+
+

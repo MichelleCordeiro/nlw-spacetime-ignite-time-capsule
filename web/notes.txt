@@ -88,5 +88,31 @@ PACOTE DE ICONES
 ATENÇÃO: o pacote PHOSPHOR ainda não foi atualiza p funcionar c a nova versão no Next
 
 
+AULA 03
 
+OAUTH
+Permite logar na minha aplicação utilizando uma conta existente em outra aplicação.
+No caso a conta do Github
 
+GITHUB
+Clica na imagem do perfil  >  Settings  >  Developer settings (final do sidebar)  >  OAuth Apps
+Register a new application
+  Application name: NLW SpaceTime (DEV)
+  Homepage URL: http://localhost:3000
+  Authorization callback URL: http://localhost:3000/api/auth/callback
+  Register application
+
+Client ID: 5d9b9843964b7a74ffa8
+
+No VS Code
+Cria arquivo .env.local
+  # Github
+  NEXT_PUBLIC_GITHUB_CLIENT_ID=5d9b9843964b7a74ffa8
+
+No GITHUB clica em Generate a new client secret
+  Copia a key do Client Secret ea4bcc96893ae322b767dc2d61bc0906668eab4d
+
+Na pasta Server  > arquivo .env add
+  # Github
+  GITHUB_CLIENT_ID=5d9b9843964b7a74ffa8
+  GITHUB_CLIENT_SECRET=ea4bcc96893ae322b767dc2d61bc0906668eab4d
