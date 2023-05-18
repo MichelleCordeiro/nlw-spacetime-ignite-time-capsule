@@ -1,0 +1,157 @@
+SAI DA PASTA SERVER
+> npx create-expo-app mobile
+
+Renomeia o App.js p App.tsx
+
+> npm run start
+  'yes' p configurar o typescript
+
+ALERTA
+Some dependencies are incompatible with the installed expo version: react-native@0.71.7 - expected version: 0.71.8
+>  npx expo install react-native@0.71.8
+
+Tava dando esse erro 
+"CommandError: No Android connected device found, and no emulators could be started 
+Please connect a device or create an emulator (https://docs.expo.dev/workflow/andro
+Then follow the instructions here to enable USB debugging:
+https://developer.android.com/studio/run/device.html#developer-device-options. If y
+at your Android SDK directory."
+
+Eu tinha esquecido q 1o tem q abrir o Android Studio e carregar uma imagem antes de executar "npm run start"
+Talvez seja melhor 
+  > npx expo start
+  > npx expo start --clear    (p limpar o cache)
+
+ANDROID STUDIO - VER PRINTS *.png
+Atualizei o Android Studio da versão Dolphi p a versão Flamingo
+
+A nova instalação criou nova pasta .android (c:/users/Michelle/.android). Movi ela p D:/Softwares/.android
+Movi p dentro dela a pasta "avd" e remomiei a antiga p .android-old
+
+No AS, coloquei o caminho p o SDK (D:/Softwares/Android/SDK)
+
+Atualizei tbm:
+  -Android SDK Biuld-Tools
+  -Android Emulator
+  -Android SDK Platform-Tools
+
+1º Abre o Android Studio
+2º Carrega a imagem   ->  Pixel_4_API_31
+3º executa no terminal o comando > npm run start  >  a
+4º Aviso de desatualizado ->  atualizei
+    Pixel_4_API_31 is outdated, would you like to upgrade? ... yes
+5º Finalmente carregou o emulador
+
+
+VS Code
+TAILWIND NO REACT NATIVE
+NATIVE WIND - pacote da comunidade p usar tailwind no react native
+https://www.nativewind.dev/
+
+Seguir tutorial da Guia Expo
+> npm i nativewind
+> npm i tailwindcss -D
+> npx tailwindcss init
+
+No tailwind.config.js substituir 
+  content: [],
+    ⬇ 
+  content: ["./App.{js,jsx,ts,tsx}", "./<custom directory>/**/*.{js,jsx,ts,tsx}"],
+
+No babel.config.js, add a linha a seguir abaixo do presents
+  plugins: ["nativewind/babel"],
+
+P o tutorial da Guia typescript e fazer diferente
+No tsconfig.json alterar
+  "compilerOptions": {},
+      ⬇ 
+  "compilerOptions": {
+      "types": [
+        "nativewind/types"
+      ]
+    },
+
+
+LINT
+> npm i eslint @rocketseat/eslint-config -D
+
+Cria arquivo .eslintrc.json e re-salva arquivos c erro
+  {
+    "extends": [
+      "@rocketseat/eslint-config/react"
+    ]
+  }
+
+
+Meu expo travou e fechou, ao reabri-lo deu esse erro 
+ WARN  expo-updates is installed but there is no runtime or SDK version configured. You'll need to configure one of these two properties in AndroidManifest.xml before OTA updates will work properly.
+
+Fechei o app no Expo e reabri clicando em Mobile. Deu certo
+
+
+PRETTIER
+> npm i prettier-plugin-tailwindcss -D
+
+Cria arquivo prettier-config.js e add
+  module.export = {
+    plugins: [require('prettier-plugin-tailwindcss')],
+  }
+
+P identificar automaticamente os plugins do prettier
+  CTRL + SHIFT + P   =>  reload windows
+
+
+GOOGLE FONTS
+https://github.com/expo/google-fonts
+> npx expo install @expo-google-fonts/roboto @expo-google-fonts/bai-jamjuree expo-font
+
+Corrige o erro de camel case add no tailwind.config.js
+  "rules": {
+    "camelcase": "off"
+  }
+
+  A fonte não era trocada, então limpei o cache c o comando abaixo
+  > rm -rf node_modules/ && rm -f package-lock.json && rm -f yarn.lock && npm cache verify && npm install && expo r -c
+
+
+IMAGE
+P usar svg
+  react-native-svg    https://github.com/software-mansion/react-native-svg
+    > npx expo install react-native-svg
+
+P consertar o erro da importação da imagem "import blurBg from './src/assets/bg-blur.png'"
+  react native svg transformer   https://github.com/kristerkari/react-native-svg-transformer
+    > npm i -D react-native-svg-transformer
+
+   Cria um arquivo .d.ts (arquivo puramente c typescript)
+      No assets.d.ts
+        declare module '*.png'
+  
+  Cria metro.config.js na raiz
+    const { getDefaultConfig } = require("expo/metro-config");
+
+    module.exports = (() => {
+      const config = getDefaultConfig(__dirname);
+
+      const { transformer, resolver } = config;
+
+      config.transformer = {
+        ...transformer,
+        babelTransformerPath: require.resolve("react-native-svg-transformer"),
+      };
+      config.resolver = {
+        ...resolver,
+        assetExts: resolver.assetExts.filter((ext) => ext !== "svg"),
+        sourceExts: [...resolver.sourceExts, "svg"],
+      };
+
+      return config;
+    })();
+
+  No assets.d.ts adiciona:
+    declare module "*.svg" {
+      import React from 'react';
+      import { SvgProps } from "react-native-svg";
+      const content: React.FC<SvgProps>;
+      export default content;
+    }
