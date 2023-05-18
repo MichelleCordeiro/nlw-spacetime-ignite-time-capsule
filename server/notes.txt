@@ -74,3 +74,58 @@ yes p todas as perguntas
 
 na pasta web   > npm run dev
 
+AULA 02 **********************
+  schema.prisma
+    model User {
+    id        String @id @default(uuid())
+    githubId  Int    @unique
+    name      String
+    login     String
+    avatarUrl String
+
+    memories Memory[]
+  }
+
+  model Memory {
+    id     String @id @default(uuid())
+    userId String
+
+    coverUrl  String
+    content   String
+    isPublic  Boolean  @default(false)
+    createdAt DateTime @default(now())
+
+    user User @relation(fields: [userId], references: [id])
+  }
+
+  > npx prisma migrate dev
+
+  Dá erro p o banco já tem dados
+  > npx prisma studio     (ao abrir a tabela User dá erro tbm)
+
+  > npx prisma migrate reset
+   > npx prisma migrate dev
+    y create memories table
+
+
+Em src > routes > memories.ts
+
+SEPARANDO AS ROTAS
+Cria em scr pasta e arquivo ts: uscr > lib > prisma.ts
+
+BIBLIOTECA ZOD - p validar requisição
+Por exemplo, o prisma não válida se na requisição consta o id
+> npm i zod
+
+Após o CRUP está pronto, instala o CORS
+CORS é uma técnica de segurança do backend p determinar quais urls vão poder acessar a nossa API
+> npm i @fastify/cors
+
+No server.ts
+  import cors from '@fastify/cors'
+
+  app.register(cors, {
+    origin: true, // todas as urls de frontend poderam acessar no backend
+    // origin: ['http://localhost:3000', 'http://rocketseat.com.br/'],
+  })
+
