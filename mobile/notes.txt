@@ -155,3 +155,103 @@ P consertar o erro da importação da imagem "import blurBg from './src/assets/b
       const content: React.FC<SvgProps>;
       export default content;
     }
+
+
+AULA 03
+EXPO AUTH SESSION https://docs.expo.dev/versions/latest/sdk/auth-session/
+> npx expo install expo-auth-session expo-crypto
+
+No app.json
+    "expo": {
+      "scheme": "nlwspacetime",
+    }
+
+Authentication Guide https://docs.expo.dev/guides/authentication/
+Procura o Github no sidebar e clica https://docs.expo.dev/guides/authentication/#github
+
+No Github
+  Clica na foto > Settings > Developer settings (final do sidebar)  >  OAuth Apps  >  New OAuth App
+    Application name: NLW SpaceTime (DEV MOBILE)
+    Homepage URL: http://localhost:3000
+    Authorization callback URL: exp://localhost:19000
+    Register application
+
+Client ID: c9543ba9a933e4401451
+
+Após realizar as alterações no App.tsx para o Expo e limpa o cache
+> npx expo start --clear
+
+AXIOS
+P pegar o ecp token do Github
+console.log(code) do App.tsx mostra o código do Github pelo Mobile 
+> npm i axios
+
+Em src  >  lib  >  api.ts
+  export const api = axios.create({
+    // o android tem dificuldade p trabalhar c localhost, usar o endererço local ipconfig
+    baseURL: 'https://192.168.0.1:3333',
+  })
+
+No SERVER  > src  >  server.ts 
+  app
+    .listen({
+      port: 3333,
+      host: '0.0.0.0',
+    })
+    .then...
+
+No SERVER  >  .env   (comenta as credenciais web e coloca as do mobile, gera a key secret se não tiver ainda)
+  # Github (web)
+  # GITHUB_CLIENT_ID=5d9b9843964b7a74ffa8
+  # GITHUB_CLIENT_SECRET=ea4bcc96893ae322b767dc2d61bc0906668eab4d
+
+  # Github (mobile)
+  GITHUB_CLIENT_ID=c9543ba9a933e4401451
+  GITHUB_CLIENT_SECRET=12af44804454d128f5a51c2e9378598b3983a06e
+
+Reinicia servidor
+
+EXPO SECURE STORE - https://docs.expo.dev/versions/latest/sdk/securestore/
+React Native não tem suporte a cookies e precisa salvar o token nos cookies c axios
+> npx expo install expo-secure-store
+
+EXPO ROUTER - https://docs.expo.dev/guides/routing-and-navigation/
+Após logar o usuário é redirecionado p página vazia p cadastrar a 1ª memória ou p a págida q várias memórias já cadastradas
+
+Getting Started - https://expo.github.io/router/docs/
+> npx expo install expo-router react-native-safe-area-context react-native-screens expo-linking expo-constants expo-status-bar
+
+No package.json substitui
+  "main": "node_modules/expo/AppEntry.js",
+por
+  "main": "index.js
+
+Cria na raiz arquivo index.js
+  import "expo-router/entry";
+
+No package.json add após as depedências
+  "overrides": {
+    "metro": "0.76.0",
+    "metro-resolver": "0.76.0"
+  }
+
+No babel.config.js
+    plugins: ['nativewind/babel', require.resolve('expo-router/babel')],
+
+Reinicia a aplicação mobile
+
+Na raiz cria a pasta app e o arquivo index.tsx
+  move todo o conteúdo do app.tsx pro app > index.tsx
+    arruma o caminho da importação 
+      import { api } from '../src/lib/api'
+
+Exclui app.tsx
+Para o expo e executa limpando o cache
+> npx expo start --clear
+
+EXPO ROUTER - LINKING - https://expo.github.io/router/docs/features/linking
+No index.tsx
+  import { useRouter } from "expo-router";
+
+Dentro de app  > memories.tsx
+

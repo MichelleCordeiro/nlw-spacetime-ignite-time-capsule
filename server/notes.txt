@@ -222,7 +222,7 @@ Pega na documentação do fastify jwd (https://github.com/fastify/fastify-jwt)
     }
   }
 
-
+VER ANOTAÇÕES DO MOBILE DAS LINHAS 194-210
 
 
 
