@@ -116,3 +116,92 @@ Na pasta Server  > arquivo .env add
   # Github
   GITHUB_CLIENT_ID=5d9b9843964b7a74ffa8
   GITHUB_CLIENT_SECRET=ea4bcc96893ae322b767dc2d61bc0906668eab4d
+
+
+AULA 03
+
+Dentro de scr/app cria as pastas api > auth > callback e o arquivo route.ts
+
+AXIOS
+Instala o axios tbm no frontend pq depois q ele pega o código do Github ele precisa enviar p o backend
+> npm i axios
+
+Dentro da pasta src cria a pasta e arquivo scr > lib > api.ts
+  import axios from 'axios'
+
+  export const api = axios.create({
+    baseURL: 'http://localhost:3333',
+  })
+
+COOKIE
+Dá p verificar o cookie no DevTools > menu Application > sidebar Storage > Cookies
+
+Em page.tsx
+  import { cookies } from 'next/headers'
+  const isAuthenticated = cookies().has('token')
+        {isAuthenticated ? <p>Oi</p> : <SignIn />}
+
+Em components cria o arquivo Profile.tsx
+  import { User } from 'lucide-react'
+
+  export function Profile() {
+    return (
+      <a
+        href={`https://github.com/login/oauth/authorize?client_id=${process.env.NEXT_PUBLIC_GITHUB_CLIENT_ID}`}
+        className="flex items-center gap-3 text-left transition-colors hover:text-gray-50"
+      >
+        <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-400">
+          <User className="h-5 w-5 text-gray-500" />
+        </div>
+
+        <p className="max-w-[140px] text-sm leading-snug">
+          <span className="underline">Crie sua conta</span> e salve suas memórias!
+        </p>
+      </a>
+    )
+  }
+
+Em page.tsx
+  import { cookies } from 'next/headers'
+  const isAuthenticated = cookies().has('token')
+        {isAuthenticated ? <Profile /> : <SignIn />}
+
+JWT-DECODE
+Usado p extrair as informações de dentro do Payload (do token recebido do Github)
+> npm i jwt-decode
+
+Dentro de lib cria auth.ts
+  import { cookies } from 'next/headers'
+  import decode from 'jwt-decode'
+
+  interface User {
+    sub: string
+    name: string
+    avatarUrl: string
+  }
+
+  export function getUser(): User {
+    const token = cookies().get('token')?.value
+
+    if (!token) {
+      throw new Error('Unauthenticated.')
+    }
+
+    const user: User = decode(token)
+
+    return user
+  }
+
+IMAGEM
+P carregar imagem externa no Next é preciso configurar no next.config.js
+  const nextConfig = {
+    images: {
+      domains: ['avatars.githubusercontent.com'],
+  },
+}
+
+
+
+
+
+
