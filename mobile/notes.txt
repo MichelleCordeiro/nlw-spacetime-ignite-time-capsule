@@ -255,3 +255,66 @@ No index.tsx
 
 Dentro de app  > memories.tsx
 
+
+AULA 04
+No SERVER > .env  comenta as credenciais da Web e descomenta as do Mobile
+E reinicia o servidor > npm run dev
+
+No Mobile
+> npm run start 
+
+Assim como no Web tudo q se repete nas páginas devem ficar dentro do arquivo layout
+Na pasta app  >  _layout.tsx
+  Transfere conteúdo q se repete nas páginas de index.tsx p _layout.tsx
+  Add a tag <Slot /> q é importada de 'expo-router' p renderizar os components certos de cada página, porém o slot tem uma navegação muito seca/sem animação.
+  Melhor trocar ele por Stack
+
+Após informar as rotas existentes e seus redirecionamentos
+  <Stack.Screen name="index" redirect={isUserAuthenticated} />
+  <Stack.Screen name="memories" />
+
+  Cria a rota app  >  new.tsx
+
+AS CHILD - faz o filho herdar o comportamento do pai
+O TouchableOpacity se comportará como um Link 
+  <Link href="/memories" asChild>
+    <TouchableOpacity className="h-10 w-10 items-center justify-center rounded-full bg-purple-500">
+      ....
+    </TouchableOpacity>
+  </Link>
+
+USE SAFE AREA INSETS
+Os tamanhos da statusbar e do footer do IOS(nut) variam de acordo c o sistema operacional. 
+A statusbar android tem 20 e no IOS tem 40 de altura
+Dá p descobrir qual o valor aplicar p livrar o demais componentes deles e não ficarem sobrepostos
+  import { useSafeAreaInsets } from 'react-native-safe-area-context'
+
+  export default function NewMemory() {
+    const { bottom, top, left, right } = useSafeAreaInsets()
+
+    return <View style={{ paddingBottom: bottom, paddingTop: top }} ></View>
+  }
+
+UI
+Não é bom usar checkbox no mobile pq é ruim p clicar.
+Ao invés dele usasse o botão Switch
+  import { ..., Switch } from 'react-native'
+
+TEXT INPUT
+No react native não existe textArea, usasse textInput c a propriedade multiline
+  <TextInput multiline />
+
+SCROLLVIEW
+Na scroolView não se usa o STYLE, e sim o CONTENT CONTAINER STYLE
+   <ScrollView
+      className="flex-1 px-8"
+      style={{ paddingBottom: bottom, paddingTop: top }}
+    >
+   <ScrollView
+      className="flex-1 px-8"
+      contentContainerStyle={{ paddingBottom: bottom, paddingTop: top }}
+    >
+
+
+
+
