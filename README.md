@@ -1,7 +1,7 @@
 <!--Banner session-->
 <p>
   <img src="https://i.postimg.cc/gkShTXDv/rocketseat.png' alt="Logo Rocketseat" tittle="Logo Rocketseat" width="210" align="left">
-  <img src="./web/src/assets/nlw-spasetime-logo.svg" alt="Logo NLW SpaceTime" tittle="Logo NLW SpaceTime" width="170" align="right">
+  <img src="./web/src/assets/nlw-spasetime-logo.svg" alt="Logo NLW SpaceTime" tittle="Logo NLW SpaceTime" width="160" align="right">
 </p>
 <br><br><br>
 
@@ -30,7 +30,7 @@
   <code><img height="25" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/react/react.png" alt="React">React</code>
   <code><img height="20" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/typescript/typescript.png" alt="TypeScript">TypeScript</code>
   <code><img height="24" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/tailwind/tailwind.png" alt="TailWind">TailWindCSS</code>
-  <code><img height="23" src="https://i.postimg.cc/CxyK6T6g/next-js.png" alt="Next.js">Next.13</code>
+  <code><img height="23" src="https://i.postimg.cc/cHkhnKp7/next-js-gray.png" alt="Next.js">Next.13</code>
   <code><img height="24" src="https://www.rocketseat.com.br/nlw/_next/image?url=%2Fnlw%2Fsvg%2Ftechs%2Fnextauth.png&w=32&q=75" alt="OAuth">Next Auth</code>
 </p>
 <p align="left"> &emsp;&emsp;
@@ -49,11 +49,27 @@
 <h3> 🎯 Layout </h3>
 
 <p>
-  <img src="https://i.postimg.cc/DwrbrdPn/nlw-spacetime-web.png" alt="NLW SpaceTime" tittle="Web" width="480" style="margin-botton: 10px">
-  <img src="https://i.postimg.cc/3x5v0bpt/nlw-spacetime-mobile.png" alt="NLW SpaceTime" tittle="Mobile" width="480" style="margin-left: 15px">
+  <img src="https://i.postimg.cc/DwrbrdPn/nlw-spacetime-web.png" alt="NLW SpaceTime" tittle="Web" width="500" style="margin: 0 20px 20px 0">
+  <img src="https://i.postimg.cc/3x5v0bpt/nlw-spacetime-mobile.png" alt="NLW SpaceTime" tittle="Mobile" width="500" style="margin: 0 0px 20px 0">
 </p>
 
-<br><br>
+<br>
+
+<!-- Propriedade -->
+<h3> 👩🏼‍💻 Contatos </h3>
+
+<p>
+  <strong>Michelle Cordeiro</strong> &emsp; 
+  <a href="https://www.linkedin.com/in/michelle-cordeiro/"> 
+    <img src="https://github.com/MichelleCordeiro/MichelleCordeiro/blob/main/logos/linkedin.png?raw=true" alt="logo linkedin" width="20"/> LinkedIn
+  </a> &emsp;
+  <a href="michelle8cordeiro@gmail.com">
+    <img src="https://github.com/MichelleCordeiro/MichelleCordeiro/blob/main/logos/gmail.png?raw=true" alt="logo gmail" width="20"/>
+    E-mail: michelle8cordeiro@gmail.com
+  </a>
+</p>
+
+<br>
 
 <!-- Licenças -->
 <h3 align="left"> 📝 License </h3>

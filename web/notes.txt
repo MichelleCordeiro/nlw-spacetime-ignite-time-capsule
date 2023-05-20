@@ -85,7 +85,7 @@ Não usou a propriedade repeating-linear-gradient() pq nem todos os browsers sup
 PACOTE DE ICONES
 > npm i lucide-react
 
-ATENÇÃO: o pacote PHOSPHOR ainda não foi atualiza p funcionar c a nova versão no Next
+ATENÇÃO: o pacote de ícones PHOSPHOR ainda não foi atualiza p funcionar c a nova versão do Next (o Next 13)
 
 
 AULA 03
@@ -200,8 +200,39 @@ P carregar imagem externa no Next é preciso configurar no next.config.js
   },
 }
 
+AULA 04
+No Next tem dois arquivos nele p as páginas: page.tsx e layout.tsx
+No layout.tsx fica tudo o q não muda de uma página p outra. Ex: menus, footer.
+Nesse projeto todo o lado esquerdo da aplicação é a mesma em todas as páginas
 
+Em app  >  memories  >  new  >  page.tsx
+  export default function NewMemories() {
+    return <h1>New</h1>
+  }
 
+O {children} do arquivo layout é o q vai trazer o conteúdo da página/rota específica
 
+Em app  >  api  >  auth  >  logout  >  route.ts
+
+Sempre q se faz uma nevegação dentro da aplicação c Next é preferível utilizar a tag 'Link' do q tag 'a',
+porém no caso de fazer o logout não deu certo c o Link
+
+No lib  >  api.ts é preciso usar o ip ao invés de localhost
+  baseURL: 'http://192.168.0.199:3333',
+
+TAILWIND FORMS - https://github.com/tailwindlabs/tailwindcss-forms
+Com é difícil aplicar estilização/CSS em forms, ou não aplica ou varia em diferentes navegadores, o tailwind criou esse plugin
+> npm install -D @tailwindcss/forms
+
+tailwind.config.js
+  plugins: [require('@tailwindcss/forms')],
+
+<input ... className="h-4 w-4 rounded border-gray-400 bg-gray-700 text-purple-500"  />
+
+MIDDLEWARE
+É qdo se quer interceptar o acesso de um usuário a uma determinada rota. P.ex: Agora mesmo sem estar logado o usuário pode digitar a rota 'http://localhost:3000/memories/new' e essa página abrir p ele
+
+Em scr >  middleware.ts
+  
 
 
