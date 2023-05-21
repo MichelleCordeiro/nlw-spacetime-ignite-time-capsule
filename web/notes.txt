@@ -233,6 +233,55 @@ MIDDLEWARE
 É qdo se quer interceptar o acesso de um usuário a uma determinada rota. P.ex: Agora mesmo sem estar logado o usuário pode digitar a rota 'http://localhost:3000/memories/new' e essa página abrir p ele
 
 Em scr >  middleware.ts
+
+
+AULA 05
+No SERVER  >  .env  comentar credenciais Mobile e descomentar credenciais web
+Rodar servidor pelo terminal p não ter 2 VS Codes abertos
+  Na pasta SERVER > npm run dev
+
+Na pasta Web
+  > npm run dev
+
+ERROR Event handlers - If you need interactivity, consider converting part of this to a CLIENT COMPONENT
+
+  O React tem pedido q se utilize framework junto c ele. E isso vale p qq tecnologia, é a recomendação q se use framework junto, por exemplo: o ruby tem o rails, o python tem o flask ou o fastapi, o php tem o laravel...
+  Uma das vantagens desses novos frameworks é evitar enviar JS desnecessários p a aplicação.
   
+  Logo, por padrão, o NextJS não envia JS necessário de nenhum componente automaticamente p dentro do navegador.
+
+  Porém alguns componentes exigem JavaScript p funcionar, são os q requerem alguma interatividade/ação/ouvir eventos, e para eles funcionarem precisa q se use junto a diretiva 'use client' no React daqui p frente.
+
+  As aplicações modernas precisam de uma camada intermediária entre o frontend e o backend q é o conceito BBF (back-end for front-end)
+
+ENCAPSULAR componente q exige JS
+  Os novos projetos React c Next precisam q se use junto a diretiva 'use client' nas páginas c componentes q exigem JS
+  Em src  >  app  >  memories  >  new  >  page.tsx 
+    XXX  'use client'
+      Porém se o 'use client' ficar na página todo o JS contido na página será enviado, mas nem todo o JS precisa ser enviado p a página funcionar, apenas dos componentes específicos q o exigem.
+      Então o ideal é isolar/ENCAPSULAR o componente q exige JS
+
+Em src  >  components  >  MediaPicker.tsx
+  Remove o input de page.tsx e coloca nele junto c o 'use client'
+
+Em src  >  components  >  NewMemoryForm.tsx
+  Remove o form de page.tsx e coloca nele junto c o 'use client'
 
 
+Numa página c 'use client' a função cookie() não pode ser acessada
+  import { cookies } from 'next/headers'
+  const qqNone = cookies().has('token')
+
+Porém é possivel pegar o cookie (o token armazenado no cookie) através de document.cookie
+Só q o retorno é no formato abaixo e precisaria usar regex p 'limpar' o token
+  token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiTWljaGVsbGUgQ29yZGVpcm8iLCJhdmF0YXJVcmwiOiJodHRwczovL2F2YXRhcnMuZ2l0aHVidXNlcmNvbnRlbnQuY29tL3UvNDI4OTEzNzc_dj00Iiwic3ViIjoiODc0MTBkY2EtMjg4Yi00NDMwLWFhYmQtYWIzZTIzOWU4Yjc4IiwiaWF0IjoxNjg0Njk1MzI4LCJleHAiOjE2ODUzMDAxMjh9.TJfaAySR9N8xHsuzhe-ArQj6JAEDzauRJgH9mbmqh4I
+
+JS COOKIE
+P pegar o token já limpo pode usar a biblioteca js-cookie
+> npm i js-cookie
+
+  Qdo tenta import a lib JS-COOKIE dá erro qdo o projeto tem TypeScript, mas parando o mouse na importação ela já mostra o solução. Instala um pacote a parte q é a integração dessa lib c TS
+  > npm i --save-dev @types/js-cookie
+
+IMAGEM CORTADA
+Se a imagem salva (dá p visualizá-la pegando a url no Prisma Studio e cola num navagador) estiver cortada será pq ela tem mais de 5mb (valor definido como limite  upload). Aí ao invés de impedir o upload de imagens maiores q os 5mb ele faz o upload e para ao atingir o limite

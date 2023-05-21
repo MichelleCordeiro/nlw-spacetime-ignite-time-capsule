@@ -251,8 +251,6 @@ $ http POST localhost:3333/upload file@~/Documents/nlw.png -f
       content-length: 0
       vary: Origin
 
-
-
 Salvando arquivos no disco da aplicação apenas a título de estudos, em produção usaria serviços como Amazon S3, Google GCS, Cloudflare R2 ...
 O '__dirname' resolve problemas c a barra normal e invertida (é diferente dependendo do SO)
 
