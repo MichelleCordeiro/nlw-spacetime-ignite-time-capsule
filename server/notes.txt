@@ -225,4 +225,48 @@ Pega na documentação do fastify jwd (https://github.com/fastify/fastify-jwt)
 VER ANOTAÇÕES DO MOBILE DAS LINHAS 194-210
 
 
+AULA 04
+Nesse projeto tudo é json, qdo se cria uma memória no frontend e se envia p o backend é por meio de json (os dados, a url da capa, a rota, se é público ou não, etc).
+Só q json tem uma limitação, não se consegue enviar arquivo por json, nel é tudo texto.
+Até seria possível se convertesse o arquivo em base64, mas isso o tornaria mais pesado uns 30%.
+E fazendo isso impediria de trablhar c uma importante feature do Node, a feature de stream. Q é basicamente conseguir enviar um arquivo do frontend p o backend aos poucos e aos poucos o backend já ir fazendo a tratativa de partes desse arquivos
+P se trabalhar c arquivos no Node pode usar o plugin Fastify Multipart
+Qdo se faz o submit em um formulário (<form action="/upload">) ele é feito através do Fastify Multipart
+
+FASTIFY MULTIPART - https://github.com/fastify/fastify-multipart
+  > npm i @fastify/multipart
+
+No src  >   server.ts
+  import multipart from '@fastify/multipart'
+  app.register(multipart)
+
+Em src  >  routes  >  upload.ts
+
+Checar o envio de uma imagem 'console.log(upload.filename)' salva em C:\\Users\\Michelle/Documents/nlw.png
+$ http POST localhost:3333/upload file@~/Documents/nlw.png -f
+      HTTP/1.1 200 OK
+      Connection: keep-alive
+      Date: Sat, 20 May 2023 23:56:51 GMT
+      Keep-Alive: timeout=72
+      content-length: 0
+      vary: Origin
+
+
+
+Salvando arquivos no disco da aplicação apenas a título de estudos, em produção usaria serviços como Amazon S3, Google GCS, Cloudflare R2 ...
+O '__dirname' resolve problemas c a barra normal e invertida (é diferente dependendo do SO)
+
+    const writeStream = createWriteStream(
+      resolve(__dirname, '../../uploads/', fileName),
+    )
+
+    await pump(upload.file, writeStream)
+
+    const fullUrl = request.protocol.concat('://').concat(request.hostname)
+    const fileUrl = new URL(`/uploads/${fileName}`, fullUrl).toString()
+
+FASTIFY STATIC
+Faz c q uma pasta do backend fique pública
+> npm i @fastify/static
+
 
