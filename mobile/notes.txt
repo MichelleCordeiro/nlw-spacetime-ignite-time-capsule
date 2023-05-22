@@ -340,4 +340,9 @@ DATA
 > npm i dayjs
 
 
+EXTRA 
+SETAR DATA CUSTOMIZADA NA MEMÓRIA
+	Ver Expo Date Time Picker -https://docs.expo.dev/versions/latest/sdk/date-time-picker/?utm_source=google&utm_medium=cpc&utm_content=performancemax&gclid=CjwKCAjwgqejBhBAEiwAuWHioBTGMEpyYx5WoYlr3qmmkZkh90vgTVUHdK5jDS2ayWYg-ws7ueqarxoCrGcQAvD_BwE
+
+
 

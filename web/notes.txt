@@ -58,6 +58,8 @@ CTRL + SHIFT + p   >   reload windows
     <div className="m-10 h-20 w-20 rounded bg-red-300 text-2xl font-bold uppercase">
 
 
+AULA 02 -------------------------------------------------------------------------------
+
 FONTS
   import { ... } from 'next/font/google'
   Add fonts google sem ser pelo método tradicional/links tem a vantagem de evitar o "efeito layout shift" (qdo a aplicação carrega c uma fonte padrão e só depois troca pela fonte escolhida)
@@ -88,7 +90,7 @@ PACOTE DE ICONES
 ATENÇÃO: o pacote de ícones PHOSPHOR ainda não foi atualiza p funcionar c a nova versão do Next (o Next 13)
 
 
-AULA 03
+AULA 03 -------------------------------------------------------------------------------
 
 OAUTH
 Permite logar na minha aplicação utilizando uma conta existente em outra aplicação.
@@ -117,8 +119,6 @@ Na pasta Server  > arquivo .env add
   GITHUB_CLIENT_ID=5d9b9843964b7a74ffa8
   GITHUB_CLIENT_SECRET=ea4bcc96893ae322b767dc2d61bc0906668eab4d
 
-
-AULA 03
 
 Dentro de scr/app cria as pastas api > auth > callback e o arquivo route.ts
 
@@ -200,7 +200,7 @@ P carregar imagem externa no Next é preciso configurar no next.config.js
   },
 }
 
-AULA 04
+AULA 04 -------------------------------------------------------------------------------
 No Next tem dois arquivos nele p as páginas: page.tsx e layout.tsx
 No layout.tsx fica tudo o q não muda de uma página p outra. Ex: menus, footer.
 Nesse projeto todo o lado esquerdo da aplicação é a mesma em todas as páginas
@@ -235,7 +235,7 @@ MIDDLEWARE
 Em scr >  middleware.ts
 
 
-AULA 05
+AULA 05 parte 1/2 ----------------------------------------------------------------------------
 No SERVER  >  .env  comentar credenciais Mobile e descomentar credenciais web
 Rodar servidor pelo terminal p não ter 2 VS Codes abertos
   Na pasta SERVER > npm run dev
@@ -285,3 +285,28 @@ P pegar o token já limpo pode usar a biblioteca js-cookie
 
 IMAGEM CORTADA
 Se a imagem salva (dá p visualizá-la pegando a url no Prisma Studio e cola num navagador) estiver cortada será pq ela tem mais de 5mb (valor definido como limite  upload). Aí ao invés de impedir o upload de imagens maiores q os 5mb ele faz o upload e para ao atingir o limite
+
+AULA 05 parte 2/2 ----------------------------------------------------------------------------
+
+DATA
+DAYJS - poderia usar o intl
+> npm i dayjs
+
+Em scr  >  page.tsc
+  import dayjs from 'dayjs'
+  import ptBr from 'dayjs/locale/pt-br'
+  dayjs.locale(ptBr) 
+  {dayjs(memory.createdAt).format('D[ de ]MMM[, ]YYYY')}
+
+IMAGEM VINDA DO SERVIDOR
+Toda vez q se tras imagem do servidor é preciso informar w e h dela, é uma forma de otimização(envia o tamanho necessário)
+Em scr  >  page.tsc
+  <Image src={memory.coverUrl} width={592} height={280} alt="" />
+
+
+SETAR DATA CUSTOMIZADA NA MEMÓRIA
+Ver Date Time Picker p web ou o próprio TNTL
+React-Time-Picker - https://www.npmjs.com/package//react-time-picker
+INTL - https://formatjs.io/docs/getting-started/installation/
+
+

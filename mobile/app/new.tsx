@@ -9,7 +9,7 @@ import {
 } from 'react-native'
 import Icon from '@expo/vector-icons/Feather'
 
-import NLWLogoH from '../src/assets/nlw-spacetime-logo.svg'
+import NLWLogoH from '../src/assets/nlw-spacetime-logo-h.svg'
 import { Link, useRouter } from 'expo-router'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { useState } from 'react'
