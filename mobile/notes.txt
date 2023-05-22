@@ -157,7 +157,7 @@ P consertar o erro da importação da imagem "import blurBg from './src/assets/b
     }
 
 
-AULA 03
+AULA 03 ---------------------------------------------------------------------------------
 EXPO AUTH SESSION https://docs.expo.dev/versions/latest/sdk/auth-session/
 > npx expo install expo-auth-session expo-crypto
 
@@ -256,7 +256,7 @@ No index.tsx
 Dentro de app  > memories.tsx
 
 
-AULA 04
+AULA 04 ---------------------------------------------------------------------------------
 No SERVER > .env  comenta as credenciais da Web e descomenta as do Mobile
 E reinicia o servidor > npm run dev
 
@@ -315,6 +315,29 @@ Na scroolView não se usa o STYLE, e sim o CONTENT CONTAINER STYLE
       contentContainerStyle={{ paddingBottom: bottom, paddingTop: top }}
     >
 
+
+AULA 05 ---------------------------------------------------------------------------------
+
+No SERVER  >  .env alterna as credenciais
+  Comenta as da web e descomenta as Mobile
+  > npm run dev
+
+EXPO IMAGE PICKER - https://docs.expo.dev/versions/latest/sdk/imagepicker/?utm_source=google&utm_medium=cpc&utm_content=performancemax&gclid=CjwKCAjwgqejBhBAEiwAuWHioMjShCSLqTI2vzSbqWXZPWhNwtY62CmFHYFF0CM6w9DXUNMm14tbEBoCjj0QAvD_BwE
+> npx expo install expo-image-picker
+
+ERROR AO SALVAR NOVA MEMÓRIA
+ WARN  Possible Unhandled Promise Rejection (id: 0):
+[AxiosError: Request failed with status code 500]
+
+  Provavelmente é pq o token salvo não está mais válido, mas o app estando logando não consegue mais acessar o Github
+  É preciso excluir o token salvo (comando abaixo) e reiniciar o app p deslogar no app, isso enqto não existe o botão p deslogar
+      async function handleCreateMemory() {
+        await SecureStore.deleteItemAsync('token')
+        return
+        ... }
+
+DATA
+> npm i dayjs
 
 
 
